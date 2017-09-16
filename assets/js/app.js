@@ -34,6 +34,18 @@ $(document).on("click","#theBear", function(event) {
   console.log(event);
 })
 
+$("#yeah").on("click", function(){
 
+  var yeah = $("#searchTerm").val();
 
+  $.ajax({
+          url: "https://api.whatdoestrumpthink.com/api/v1/quotes/personalized?q=" + yeah + "",
+          method: "GET"
+        }).done(function(response) {
+          console.log(response);
+
+ $(".location").html("<h3>" + response.message + "." + "</h3>");
+
+        });
+});
 
