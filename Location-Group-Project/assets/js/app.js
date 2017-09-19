@@ -1,18 +1,19 @@
 $(document).ready(function() {
 
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyA0Q_j5yNdCDCwWd7ZzUnPHxZzY4fO4y-g",
-  authDomain: "trumpattack-c7cb1.firebaseapp.com",
-  databaseURL: "https://trumpattack-c7cb1.firebaseio.com",
-  projectId: "trumpattack-c7cb1",
-  storageBucket: "",
-  messagingSenderId: "351130597661"
-};
-
-firebase.initializeApp(config);
+  var config = {
+    apiKey: "AIzaSyCKhdA1h-Zil97L2CG0lCIG3FxbEW33NT0",
+    authDomain: "trumpproject-1aeeb.firebaseapp.com",
+    databaseURL: "https://trumpproject-1aeeb.firebaseio.com",
+    projectId: "trumpproject-1aeeb",
+    storageBucket: "",
+    messagingSenderId: "825405882430"
+  };
+  firebase.initializeApp(config);
 
 var database = firebase.database();
+var clickCounter = 0;
+
 
 // Buttons and some functions are hidden while users click through
 
@@ -79,9 +80,15 @@ $("#nobutton").on("click", function() {
 // Else, if button clicked = Yes, ask another question, "Where did it hurt? Use the band aids below and tell us where on the bear."
 
 $("#yesbutton").on("click", function () {
+  clickCounter++;
+// $(".clickCounter").text(clickCounter);
+      database.ref().set({
+        clickCount: clickCounter
+      });
 
-  $("#yesbutton").hide();
-  $("#nobutton").hide();
+
+  // $("#yesbutton").hide();
+  // $("#nobutton").hide();
   $("#theBear").show();
   $(".bandAids").show();
 
@@ -114,7 +121,11 @@ $(document).on("click","#theBear", function(event) {
 
 
 })
-
+  database.ref().on("value", function(snapshot) {
+    console.log(snapshot.val())
+    $(".clickCounter").html("Trump has offended " + snapshot.val().clickCount + " people!");
+    clickCounter = snapshot.val().clickCount;
+  })
 
 
 
