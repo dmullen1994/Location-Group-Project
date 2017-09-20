@@ -1,0 +1,4 @@
+#grad1 {
+    height: 500px;
+        background: linear-gradient(to right,  red, white, blue); /* Standard syntax (must be last) */
+}
