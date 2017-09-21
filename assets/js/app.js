@@ -6,8 +6,10 @@ function draw() {
     console.log("drew image");
 };
 
+
 $(document).ready(function() {
 
+// Initialize Firebase
 var config = {
   apiKey: "AIzaSyA0Q_j5yNdCDCwWd7ZzUnPHxZzY4fO4y-g",
   authDomain: "trumpattack-c7cb1.firebaseapp.com",
@@ -20,12 +22,12 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-
+var clickCounter = 0;
 var pickBandAid = true;
 var patchBear = true;
 var myBandAid;
 
-$(document).on("click","#yesbutton", function(event) {
+$(document).on("click","#offendedButton", function(event) {
   pickBandAid = true;
 })
 
@@ -62,64 +64,26 @@ function rgbToHex(r, g, b) {
         throw "Invalid color component";
     return ((r << 16) | (g << 8) | b).toString(16);
 }
-//<img id="demp" src="./omna.jpg"  style="position:absolute; left: 400; top: 100; width: 200;      height: 200;"/>
-
-$("#yeah").on("click", function(){
-
-  var yeah = $("#searchTerm").val();
-
-  $.ajax({
-          url: "https://api.whatdoestrumpthink.com/api/v1/quotes/personalized?q=" + yeah + "",
-          method: "GET"
-        }).done(function(response) {
-          console.log(response);
-
-$(".location").html("<h3>" + response.message + "." + "</h3>");
-
-        });
-});
-
-$("#trump-button").on("click", function() {
-
-  // Storing our giphy API URL for a random trump image
-  var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=Trump";
-
-  // Perfoming an AJAX GET request to our queryURL
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }) .done(function(response) {
-     console.log(response);
-
-    // Saving the image_original_url property
-    var imageUrl = response.data.image_original_url;
-
-    // Creating and storing an image tag
-    var trumpImage = $("<img>");
-
-    // Setting the trumpImage src attribute to imageUrl
-    trumpImage.attr("src", imageUrl);
-    trumpImage.attr("alt", "trump image");
-
-    // Prepending the trumpImage to the random-gif div
-    $("#random-gif").prepend(trumpImage);
-  });
-});
-
 
 // Buttons and some functions are hidden while users click through
 
-$("#theBear").hide();
+
 $(".bandAids").hide();
 $("#yesbutton").hide();
 $("#nobutton").hide();
 
+var name = $("#name").val()
 
-$("#button").on("click", function () {
+
+$("#submitbutton").on("click", function() {
   // If no characters are entered in the form, alert "Please enter name"
+  if (!$("#name").val()) {
+    alert("Didn't enter your name yet. SAD!");
+  }
 
-$("#theBear").hide();
 $(".bandAids").hide();
+$("#name").hide();
+$("#submitbutton").hide();
 
 
   var name = $("#name").val();
@@ -130,13 +94,14 @@ $(".bandAids").hide();
         }).done(function(response) {
 
 
-  $(".jumbotron").html("<h2>Trump said: <strong>" + response.message + ".</strong></h2><br><h3>Did this offend you?<h3>");
+  $(".display-3").html("<h2>Trump said: <strong>" + response.message + ".</strong></h2>");
+  $(".trumppic").html("<h3>Did this offend you?</h3>");
   $("#yesbutton").show();
   $("#nobutton").show();
+
         });
 
-
-// if button clicked = No, then write a gif from Giphy to the html with the phrase, "Check back later - he's always saying something!"
+// if button clicked = No, then write a gif from Giphy to the html with a phrase
 
 $("#nobutton").on("click", function() {
 
@@ -163,50 +128,56 @@ $("#nobutton").on("click", function() {
         trumpImage.attr("alt", "trump image");
 
         // Prepending the trumpImage to the random-gif div
-        $("#random-gif").html(trumpImage);
-        $(".jumbotron").html("<h2><strong>Are you sure? Look at this guy!</strong></h2>");
+        $(".trumppic").html(trumpImage);
+        $(".display-3").html("<h2><strong>Are you sure? Look at this guy!</strong></h2>");
       });
 
 })
 
-// Else, if button clicked = Yes, ask another question, "Where did it hurt? Use the band aids below and tell us where on the bear."
+// Else, if button clicked = Yes, ask another question.
+
+
 
 $("#yesbutton").on("click", function () {
 
+  // clickCounter++;
+
+  // database.ref().set(){
+  //   clickCount: clickCounter
+  // } 
+    $(".trumppic").html("<h2><strong>Congratulations, you are one of the " + "10" + " people offended! Place a band aid with your peers on the Feelings Bear.<strong></h2>");
+  
+ 
+
   $("#yesbutton").hide();
   $("#nobutton").hide();
-  $("#theBear").show();
+  $("#canvas").show();
   $(".bandAids").show();
-
-  $(".jumbotron").html("<h2><strong>Where did it hurt?<br>Use the band-aids below and tell us where on the Feelings Bear.</strong></h2>");
+  $("trumppic").hide();
 
 
 // Then create a function where the user can click on a band aid type and place it wherever they want on the bear. Save the band aid location to firebase.
 
-var pickBandAid = true;
-var patchBear = true;
-var myBandAid;
 
-$(document).on("click","#yesbutton", function(event) {
-  pickBandAid = true;
-})
 
-$(document).on("click",".bandAids", function(event) {
-  myBandAid = $(this).attr("src");
-  patchBear = true;
-})
-
-$(document).on("click","#theBear", function(event) {
-  database.ref().child("bandAids").push({
-    xCord: event.pageX,
-    yCord: event.pageY,
-    bandAid: myBandAid, 
-  })
-  console.log(event);
-})
 
 })
 
-})
+        // MAKING A RESET FUNCTION TO RESET TO HOME PAGE
 
-})
+        function reset() {
+            $("#submitbutton").show();
+            $("#canvas").hide();
+            $(".bandAids").hide();
+            $("#yesbutton").hide();
+            $("#nobutton").hide();
+            $(".trumppic").empty();
+            $("display-3").html("<h1 class='display-3'>Has Trump offended you today?</h1>" +
+                '<input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter your name">' +
+                "<br>" + '<a class="btn btn-primary btn-lg" id="submitButton" href="#" role="button">Click this button</a>');
+        }
+
+        })
+
+
+    })
