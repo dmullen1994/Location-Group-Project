@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Has Trump offended you today?</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> 
+    <meta charset="UTF-8">
+    <title>Has Trump offended you today?</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    
+    <link href="css/new-age.min.css" rel="stylesheet">
 </head>
 <body>
-
-<script src="https://code.jquery.com/jquery.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-
-<script type="text/javascript" src="assets/js/app.js"></script>
-
-<div class="container text-center">
-
-<div class="jumbotron text-center">
-  <h1 class="display-3">Has Trump offended you today?</h1>
-  <div class="form-group text-center">
-	  <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter your name">
-  </div>
-  <a class="btn btn-primary btn-lg" id="button" href="#" role="button">Click this button</a>
-</div>
-
-<div id="yesnobutton text-center">
-	<a class="btn btn-success btn-lg btn-ctr" id="yesbutton">Yes</a>
-	<a class="btn btn-danger btn-lg btn-ctr" id="nobutton">No</a>
-</div>
-
-<br>
-
-<div id="random-gif"></div>
-
-
-<div id="bear">
-	<canvas id="canvas" width="799" height="565">Helllo</canvas>
-
-	<img src="https://dl.dropboxusercontent.com/s/xxb6ndsf71jvy25/myBear.png?raw=1" onload="draw()" style="display: none" id="theBear" crossorigin="anonymous">
-
-	<img src="assets/images/bandaids/001-medical-3.png" class="bandAids">
-</div>
-
-
-</div>
-	
-
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-7 my-auto">
+                    <div class="header-content mx-auto">
+                        <h1 class="display-3"><strong>Has<br> Donald Trump<br>offended you today?</strong></h1>
+                        <div class="form-group text-center">
+                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter your name">
+                        </div>
+                        <a class="btn btn-primary btn-lg" id="submitbutton" href="#" role="button">Click this button</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 my-auto">
+                    <div class="pic-container text-center">
+                        <div class="trumppic">
+                            <img src="assets/images/trumppic.jpg" class="img-fluid" alt="Trump making the dumbest face possible.">
+                        </div>
+                        <div id="yesnobuttons">
+                            <a class="btn btn-success btn-lg btn-ctr" id="yesbutton" href="#" role="button">Yes</a>
+                            <a class="btn btn-danger btn-lg btn-ctr" id="nobutton" href="#" role="button">No</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <br>
+    <div id="random-gif"></div>
+    <div id="bear">
+        <canvas id="canvas" width="799" height="565">Helllo</canvas>
+        <img src="https://dl.dropboxusercontent.com/s/xxb6ndsf71jvy25/myBear.png?raw=1" onload="draw()" style="display: none" id="theBear" crossorigin="anonymous">
+        <img src="assets/images/bandaids/001-medical-3.png" class="bandAids">
+    </div>
+    </div>
+    <!-- Add "Donald Trump has potentially offended + visitor number + people in total. -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
