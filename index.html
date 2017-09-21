@@ -2,20 +2,48 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Has Trump offended you today?</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> 
 </head>
 <body>
 
-	<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
 
-	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
-	<script type="text/javascript" src="assets/js/app.js"></script>
+<script type="text/javascript" src="assets/js/app.js"></script>
 
-	<img src="assets/images/myBear.png" id="theBear">
+<div class="container text-center">
+
+<div class="jumbotron text-center">
+  <h1 class="display-3">Has Trump offended you today?</h1>
+  <div class="form-group text-center">
+	  <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter your name">
+  </div>
+  <a class="btn btn-primary btn-lg" id="button" href="#" role="button">Click this button</a>
+</div>
+
+<div id="yesnobutton text-center">
+	<a class="btn btn-success btn-lg btn-ctr" id="yesbutton">Yes</a>
+	<a class="btn btn-danger btn-lg btn-ctr" id="nobutton">No</a>
+</div>
+
+<br>
+
+<div id="random-gif"></div>
+
+
+<div id="bear">
+	<canvas id="canvas" width="799" height="565">Helllo</canvas>
+
+	<img src="https://dl.dropboxusercontent.com/s/xxb6ndsf71jvy25/myBear.png?raw=1" onload="draw()" style="display: none" id="theBear" crossorigin="anonymous">
 
 	<img src="assets/images/bandaids/001-medical-3.png" class="bandAids">
+</div>
+
+
+</div>
 	
+
 </body>
 </html>
-
